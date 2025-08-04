@@ -1,28 +1,17 @@
-name: CI/CD Pipeline
+name: CI
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
-  ci-cd-job:
+  build:
+
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: CI: Run build simulation
-        run: |
-          echo "🔧 Running build..."
-          mkdir build
-          echo "This is a built file." > build/output.txt
-          echo "Build completed!"
-
-      - name: CD: Simulate deployment
-        run: |
-          echo "Deploying to fake server directory..."
-          mkdir deploy
-          cp build/output.txt deploy/
-          echo "Deployment completed! Files moved to /deploy"
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
